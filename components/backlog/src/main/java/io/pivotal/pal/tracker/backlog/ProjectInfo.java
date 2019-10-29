@@ -1,11 +1,17 @@
 package io.pivotal.pal.tracker.backlog;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.redis.core.RedisHash;
+
 import java.io.Serializable;
 
+@RedisHash("ProjectInfo")
 public class ProjectInfo implements Serializable {
 
     private static final long serialVersionUID = -8243145428016231L;
 
+    @Id
+    private Long id;
     public final boolean active;
 
     private ProjectInfo() {
@@ -37,5 +43,13 @@ public class ProjectInfo implements Serializable {
         return "ProjectInfo{" +
             "active=" + active +
             '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

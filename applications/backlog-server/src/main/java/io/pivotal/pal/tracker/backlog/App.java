@@ -7,6 +7,8 @@ import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
@@ -31,8 +33,21 @@ public class App {
     @Bean
     ProjectClient projectClient(
         RestOperations restOperations,
-        @Value("${registration.server.endpoint}") String registrationEndpoint
+        @Value("${registration.server.endpoint}") String registrationEndpoint, ProjectInfoRedisRepository redisRepository
     ) {
-        return new ProjectClient(restOperations, registrationEndpoint);
+        return new ProjectClient(restOperations, registrationEndpoint, redisRepository);
     }
+
+//        @Bean
+//        JedisConnectionFactory jedisConnectionFactory() {
+//        return new JedisConnectionFactory();
+//    }
+//
+//    @Bean
+//    public RedisTemplate<String, Object> redisTemplate() {
+//        RedisTemplate<String, Object> template = new RedisTemplate<>();
+//        template.setConnectionFactory(jedisConnectionFactory());
+//        return template;
+//    }
+
 }
