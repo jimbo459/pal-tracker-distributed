@@ -1,6 +1,10 @@
 package io.pivotal.pal.tracker.backlog;
 
-public class ProjectInfo {
+import java.io.Serializable;
+
+public class ProjectInfo implements Serializable {
+
+    private static final long serialVersionUID = -8243145428016231L;
 
     public final boolean active;
 

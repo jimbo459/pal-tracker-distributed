@@ -3,6 +3,7 @@ package io.pivotal.pal.tracker.backlog;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.web.client.RestOperations;
 
+
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -12,6 +13,11 @@ public class ProjectClient {
     private final String endpoint;
     private ConcurrentMap<Long, ProjectInfo> projectInfoCache = new ConcurrentHashMap<>();
 
+//    private Jedis jedis = new Jedis();
+
+
+
+
     public ProjectClient(RestOperations restOperations, String registrationServerEndpoint) {
         this.restOperations = restOperations;
         this.endpoint = registrationServerEndpoint;
@@ -20,7 +26,8 @@ public class ProjectClient {
     @HystrixCommand(fallbackMethod = "getProjectFromCache")
     public ProjectInfo getProject(long projectId) {
         ProjectInfo projectInfo =  restOperations.getForObject(endpoint + "/projects/" + projectId, ProjectInfo.class);
-        projectInfoCache.put(projectId, projectInfo);
+//        jedis.set(String.valueOf(projectId), projectInfo);
+//        projectInfoCache.put();
         return projectInfo;
     }
     public ProjectInfo getProjectFromCache(long projectId) {

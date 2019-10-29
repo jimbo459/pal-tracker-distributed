@@ -4,4 +4,7 @@ dependencies {
 
     testCompile project(":components:test-support")
     compile "com.netflix.hystrix:hystrix-javanica:1.5.18"
+
+    compile "redis.clients:jedis:3.1.0"
+    compile group: 'org.springframework.data', name: 'spring-data-redis', version: '2.1.11.RELEASE'
 }

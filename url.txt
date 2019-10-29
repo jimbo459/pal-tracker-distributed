@@ -1,0 +1,3 @@
+curl -i -XPOST -H"Content-Type: application/json" allocations-pal-james-manuel.apps.evans.pal.pivotal.io/allocations/ -d"{\"projectId\": \"1\", \"userId\": \"1\", \"firstDay\": \"2015-05-17\", \"lastDay\": \"2015-05-18\"}"
+curl -i -XPOST -H"Content-Type: application/json" backlog-pal-james-manuel.apps.evans.pal.pivotal.io/stories/ -d"{\"projectId    \": \"1\", \"name\": \"test\"}"
+curl -i -XPOST -H"Content-Type: application/json" timesheets-pal-james-manuel.apps.evans.pal.pivotal.io/time-entries/ -d"{\"projectId    \": \"1\", \"userId\": \"1\", \"date\": \"2015-05-17\", \"hours\": \"1\"}"
